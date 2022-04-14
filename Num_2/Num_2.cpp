@@ -39,6 +39,7 @@ void methodGauss() {
     };
 
     double m;
+    cout << setprecision(5);
     for (int i = 1; i <= n - 1; i++)
     {
         for (int j = i + 1; j <= n; j++)
@@ -49,6 +50,17 @@ void methodGauss() {
             {
                 a[j][k] = a[j][k] - m * a[i][k];
             };
+        };
+        cout << endl;
+        cout << "Step: " << i << endl;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n + 1; j++) {
+                cout << a[i][j] << "\t";
+                if (j == n) {
+                    cout << "| ";
+                }
+            };
+            cout << "\n";
         };
     };
 
@@ -92,6 +104,7 @@ void determinant() {
   
 
     double m;
+    cout << setprecision(5);
     for (int i = 1; i <= n - 1; i++)
     {
         for (int j = i + 1; j <= n; j++)
@@ -102,6 +115,14 @@ void determinant() {
             {
                 a[j][k] = a[j][k] - m * a[i][k];
             };
+        };
+        cout << endl;
+        cout << "Step: " << i << endl;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                cout << a[i][j] << "\t";
+            };
+            cout << "\n";
         };
     };
 
@@ -146,7 +167,22 @@ void InverseMatrix() {
         };
     };
 
+    cout << endl;
+    cout << setprecision(3);
+    for (int i = 1; i <= 2 * n; i++) {
+        for (int j = 1; j <= 2 * n; j++) {
+
+            cout << a[i][j] << "\t";
+            if (j == n) {
+                cout << "| ";
+            }
+        };
+        cout << "\n";
+        if (i == n) { break; }
+    };
+
     double m;
+
     for (int i = 1; i <= n; i++)
     {
         for (int j = 1; j <= n; j++)
@@ -168,6 +204,22 @@ void InverseMatrix() {
         {
             a[i][j] = a[i][j] / a[i][i];
         };
+    };
+
+    cout << endl;
+    cout << setprecision(3);
+    for (int i = 1; i <= 2 * n; i++) {
+        for (int j = 1; j <= 2 * n; j++) {
+
+            if (a[i][j] == -0) { a[i][j] = 0; }
+
+            cout << a[i][j] << "\t";
+            if (j == n) {
+                cout << "| ";
+            }
+        };
+        cout << "\n";
+        if (i == n) { break; }
     };
     
 
@@ -227,26 +279,27 @@ void algo_Tridiagonal() {
 
     double roots[3] = { 1,2,3 };
 
+    cout << "Matrix:\n";
     for (int i = 0; i <= dim - 1; i++)
     {
         for (int j = 0; j <= dim - 1; j++)
         {
             cout << a[i][j] << " ";
-        };
+        };  
         cout << "|" << f[i] << endl;
     };
 
     cout << "Root x1: " << roots[0] << endl;
     cout << "Root x2: " << roots[1] << endl;
     cout << "Root x3: " << roots[2] << endl << endl;
-    cout << "Let's start calculating the coefficients alpha and beta, zet will also be displayed\n";
 
+    cout << "Let's start calculating the coefficients alpha and beta, zet will also be displayed\n";
     alfa[0] = a[0][1] / -a[0][0]; // 2 / (-1) = -2;
     beta[0] = -f[0] / -a[0][0];// -5 / -1 = 5;
 
-    cout << "Iteration: " << 1 << endl;
-    cout << "alfa" << 1 << ": " << alfa[0] << endl;
-    cout << "beta" << 1 << ": " << beta[0] << endl;
+    cout << "Iteration: 1" << endl;
+    cout << "alfa1" <<": " << alfa[0] << endl;
+    cout << "beta1" <<": " << beta[0] << endl;
 
     for (int i = 1; i <= dim-1; i++) {
         z[i] = -a[i][i] - a[i][i - 1] * alfa[i - 1];
@@ -267,6 +320,7 @@ void algo_Tridiagonal() {
         x[i] = alfa[i] * x[i + 1] + beta[i];
     };
 
+    cout << "Calculated roots:\n";
     for (int i = 0; i < dim; i++) {
         cout.precision(15);
         cout << "x" << i + 1 << ": " << x[i] << endl;
@@ -315,6 +369,7 @@ void algo_Seidel() {
     x4[0] = 0;
     //*/
 
+    cout << "Matrix:\n";
     for (int i = 0; i <= dim - 1; i++)
     {
         for (int j = 0; j <= dim - 1; j++)
