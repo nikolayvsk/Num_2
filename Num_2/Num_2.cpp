@@ -90,7 +90,8 @@ void determinant() {
                         {0,2,5,1,0},
                         {0,0,1,4,2} };
     int n = 4;
-
+    double a_1[5][5] = {};
+    double det_part[5];
     cout << "Matrix:\n";
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= n; j++) {
@@ -105,7 +106,7 @@ void determinant() {
 
     double m;
     cout << setprecision(5);
-    for (int i = 1; i <= n - 1; i++)
+    for (int i = 1; i <= n; i++)
     {
         for (int j = i + 1; j <= n; j++)
         {
@@ -116,6 +117,9 @@ void determinant() {
                 a[j][k] = a[j][k] - m * a[i][k];
             };
         };
+        det_part[i] = a[i][i];
+        a[i][i] /= a[i][i];
+
         cout << endl;
         cout << "Step: " << i << endl;
         for (int i = 1; i <= n; i++) {
@@ -128,8 +132,15 @@ void determinant() {
 
     double det = 1;
     for (int i = 1; i <= n; i++) {
-        det *= a[i][i];
+        det *= det_part[i];
     }
+
+    int n_factorial = 1;
+    for (int i = 1; i <= n; ++i) {
+        n_factorial *= i;
+    }
+    //det = pow(-1, n_factorial) * det;
+
     cout << endl;
     cout << "Calculated determinant: " << det << endl;
 
