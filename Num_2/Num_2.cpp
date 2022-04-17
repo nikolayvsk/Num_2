@@ -130,21 +130,24 @@ void determinant() {
         };
     };
 
+    cout << "\nLeading elements: \n";
+    for (int i = 1; i <= n; i++) {
+        
+        cout << det_part[i] << endl;
+    }
     double det = 1;
     for (int i = 1; i <= n; i++) {
         det *= det_part[i];
     }
 
-    int n_factorial = 1;
+    int l = 1;
     for (int i = 1; i <= n; ++i) {
-        n_factorial *= i;
+        l *= i;
     }
-    //det = pow(-1, n_factorial) * det;
-
+    det = pow(-1, l) * det;
+    
     cout << endl;
     cout << "Calculated determinant: " << det << endl;
-
-
 }
 
 void InverseMatrix() {
